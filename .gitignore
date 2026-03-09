@@ -7,10 +7,18 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 node_modules
 dist
 dist-ssr
 *.local
+
+# Lock files (keep package-lock.json or bun.lock, not both)
+bun.lockb
 
 # Editor directories and files
 .vscode/*
