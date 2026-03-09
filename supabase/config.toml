@@ -1,0 +1,4 @@
+project_id = "ilvjdxxaobyabhzwldmy"
+
+[functions.fabric-chat]
+verify_jwt = false

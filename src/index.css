@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+/* =====================================================
+   FABRICPRINT AI — DESIGN SYSTEM
+   Dark purple/black aesthetic, modern & minimal
+   All colors in HSL
+   ===================================================== */
+
+@layer base {
+  :root {
+    /* Core palette — deep black backgrounds */
+    --background: 240 15% 4%;
+    --foreground: 270 20% 96%;
+
+    --card: 240 12% 7%;
+    --card-foreground: 270 20% 96%;
+
+    --popover: 240 12% 7%;
+    --popover-foreground: 270 20% 96%;
+
+    /* Purple brand */
+    --primary: 270 80% 62%;
+    --primary-foreground: 270 20% 98%;
+    --primary-glow: 280 90% 70%;
+    --primary-dark: 265 70% 45%;
+
+    /* Secondary surfaces */
+    --secondary: 240 10% 12%;
+    --secondary-foreground: 270 15% 85%;
+
+    --muted: 240 10% 10%;
+    --muted-foreground: 240 8% 55%;
+
+    --accent: 270 80% 62%;
+    --accent-foreground: 270 20% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 10% 14%;
+    --input: 240 10% 12%;
+    --ring: 270 80% 62%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --surface-1: 240 12% 7%;
+    --surface-2: 240 10% 10%;
+    --surface-3: 240 10% 13%;
+
+    --purple-glow: 270 80% 62%;
+    --purple-bright: 280 90% 70%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(240 15% 4%) 0%, hsl(260 25% 8%) 50%, hsl(240 15% 4%) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(265 70% 45%), hsl(280 90% 70%));
+    --gradient-card: linear-gradient(145deg, hsl(240 12% 8%), hsl(260 15% 11%));
+    --gradient-message-ai: linear-gradient(135deg, hsl(240 12% 9%), hsl(260 14% 12%));
+
+    /* Shadows */
+    --shadow-purple: 0 0 30px -5px hsl(270 80% 62% / 0.35);
+    --shadow-purple-sm: 0 0 12px -3px hsl(270 80% 62% / 0.25);
+    --shadow-card: 0 4px 24px -4px hsl(0 0% 0% / 0.5);
+    --shadow-elevated: 0 8px 40px -8px hsl(0 0% 0% / 0.6);
+
+    /* Sidebar */
+    --sidebar-background: 240 12% 5%;
+    --sidebar-foreground: 270 15% 85%;
+    --sidebar-primary: 270 80% 62%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 10% 10%;
+    --sidebar-accent-foreground: 270 15% 85%;
+    --sidebar-border: 240 10% 10%;
+    --sidebar-ring: 270 80% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+/* =====================================================
+   COMPONENT UTILITIES
+   ===================================================== */
+@layer utilities {
+  /* Glow effects */
+  .glow-purple {
+    box-shadow: var(--shadow-purple);
+  }
+  .glow-purple-sm {
+    box-shadow: var(--shadow-purple-sm);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: var(--gradient-purple);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 2px;
+  }
+
+  /* Purple border gradient */
+  .border-gradient {
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+  }
+  .border-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--primary-glow) / 0.2));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Typing dots animation */
+  .typing-dot {
+    animation: typing-bounce 1.4s infinite ease-in-out;
+  }
+  .typing-dot:nth-child(1) { animation-delay: 0s; }
+  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px hsl(270 80% 62% / 0.3); }
+  50% { box-shadow: 0 0 35px hsl(270 80% 62% / 0.6); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@layer utilities {
+  .animate-fade-up { animation: fade-up 0.5s ease-out forwards; }
+  .animate-fade-in { animation: fade-in 0.4s ease-out forwards; }
+  .animate-scale-in { animation: scale-in 0.3s ease-out forwards; }
+  .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+}
